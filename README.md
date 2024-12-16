@@ -7,7 +7,7 @@
 
 <h2 align="center">MinePay.</h2>
 
-<h4 align="center">Plugin til at håndtere betallinger af mønter på Mineclub.dk.</h4>
+<h4 align="center">Plugin til håndtering af betalinger med mønter på Mineclub.dk.</h4>
 
 <p align="center">
     <a href="https://github.com/mineklub/MinePay/commits/main">
@@ -70,27 +70,31 @@ dependencies {
 ```
 
 > [!IMPORTANT]  
-> Gamle versioner af MinePay vil muligvis ikke blive understøttet og der opfordres derfor til altid at bruge den nyeste version.
+> Ældre versioner af MinePay understøttes muligvis ikke. Det anbefales derfor altid at bruge den nyeste version.
 
 <a id="build"></a>
 ## Build
-Brug følgende gradle kommando for at bygge Minepay
+Brug følgende Gradle-kommando til at bygge MinePay:
 
 ```gradle
 gradle server-bukkit:build
 ```
 > [!NOTE]  
-> MinePay vil blive bygget til mappen `build/libs/MinePay.jar`
+> Den genererede MinePay-fil gemmes i mappen `build/libs/MinePay.jar`.
 >
 
 <a id="eksemplar"></a>
 ## Eksemplar
 
 ### Plugin
-Under findes der eksemplar på hvordan MinePay kan bruges i dit plugin.
+Herunder findes eksempler på, hvordan MinePay kan bruges i dit plugin.
 
 ### Basic Opsætning
-For at bruge MinePay skal du initilizere ved opstart og disable det ved stop af dit plugin.
+For at bruge MinePay skal det initialiseres ved plugin-opstart og deaktiveres ved plugin-stop.
+
+> [!IMPORTANT]  
+> MinePay skal initialiseres og deaktiveres for at fungere korrekt.
+
 
 ```java
 private MinePayApi minePayApi;
@@ -106,38 +110,38 @@ public void onDisable() {
 }
 ```
 
-## Opret et product og anmod spiller om køb
+### Opret et produkt og anmod spiller om køb
 ```java
 Player player = ...; // Spiller som gerne vil lave et køb
 MinePayApi minePayApi = MinePayApi.initApi(this); // Hent MinePayApi
 
-// Lav et product ved navn "Diamond" med id "diamond" som koster 10 mønter og har antal 1.
+// Opret et produkt med navnet "Diamond", ID'et "diamond", en pris på 10 mønter og et antal på 1.
 StoreProduct storeProduct = new StoreProduct("Diamond", "diamond", 10, 1);
 
-// Send købsanmodning til Spilleren igennem MinePay
+// Send en købsanmodning til spilleren via MinePay
 minePayApi.getRequestManager().createRequest(player.getUniqueId(), new StoreProduct[] {storeProduct})
 ```
 
-## Opret flere producter og anmod spiller om køb
+### Opret flere producter og anmod spiller om køb
 ```java
-Player player = ...; // Spiller som gerne vil lave et køb
+Player player = ...; // // Spilleren, som ønsker at foretage et køb
 MinePayApi minePayApi = MinePayApi.initApi(this); // Hent MinePayApi
 
-// Lav et product ved navn "Diamond" med id "diamond" som koster 10 mønter og har antal 1.
+// Opret et produkt med navnet "Diamond", ID'et "diamond", en pris på 10 mønter og et antal på 1.
 StoreProduct storeProduct1 = new StoreProduct("Diamond", "diamond", 10, 1);
 
 
-// Lav et product ved navn "Guld" med id "guld" som koster 5 mønter og har antal 2 med Metadata navn="test".
+// Opret et produkt med navnet "Guld", ID'et "guld", en pris på 5 mønter, et antal på 2 og metadata med navn="test".
 HashMap<String, String> metadata = new HashMap<>();
 metadata.put("navn", "test");
         
 StoreProduct storeProduct2 = new StoreProduct("Guld", "guld", 5, 2, metadata);
 
-// Send købsanmodning til Spilleren igennem MinePay
+// Send en købsanmodning til spilleren via MinePay
 minePayApi.getRequestManager().createRequest(player.getUniqueId(), new StoreProduct[] {storeProduct, storeProduct2})
 ```
 
-## Håndter spiller som acceptere/afviser et køb
+## Håndter spiller, som accepterer/afviser et køb
 ```java
 import dk.minepay.server.bukkit.MinePayApi;
 import dk.minepay.server.bukkit.classes.StoreProduct;
@@ -169,19 +173,20 @@ public class Main extends JavaPlugin implements Listener {
         Player player =  event.getPlayer();
         
         StringBuilder message = new StringBuilder("§2[MinePay] " + event.getPlayer().getName() + " har købt: ");
-        
-        // Gå igennem alle købte produkter
+
+        // Gennemgå alle købte produkter
         or (StoreProduct product : event.getRequest().getProducts()) {
             message.append(product.getName()).append(", ");
-            
-            // Tjek om det købte product er "diamond"
+
+            // Tjek, om det købte produkt er "diamond"
             if (product.getId().equals("diamond")) {
                 player.getInventory().addItem(new ItemStack(Material.DIAMOND));
             }
         }
         message.append("for ").append(event.getRequest().getPrice()).append(" mønter.");
 
-        // Accepter købet igennem MinePay, ellers vil minepay blive ved med at køre købet indtil serveren siger at spillerne har modtaget købet.
+        // Accepter købet via MinePay
+        // Hvis dette ikke bliver gjordt vil MinePay forsøge at give spilleren købet flere gange indtil købet enden er accepteret eller afvist
         Bukkit.getScheduler().runTaskAsynchronously(MinePayApi.getINSTANCE().getPlugin(), () -> {
             MinePayApi.getINSTANCE()
                     .getRequestManager()
