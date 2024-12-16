@@ -27,6 +27,7 @@
 </p>
 
 ---
+## Deppendency
 
 <a id="maven"></a>
 ### Maven Repository
@@ -65,10 +66,8 @@ dependencies {
 ```
 
 > [!IMPORTANT]  
-> Test.
+> Gamle versioner af MinePay vil muligvis ikke blive understøttet og der opfordres derfor til altid at bruge den nyeste version.
 
-> [!NOTE]  
-> Test.
 
 ## License
 
