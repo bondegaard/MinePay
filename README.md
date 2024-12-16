@@ -68,6 +68,18 @@ dependencies {
 > [!IMPORTANT]  
 > Gamle versioner af MinePay vil muligvis ikke blive understøttet og der opfordres derfor til altid at bruge den nyeste version.
 
+## Build
+Brug følgende gradle kommando for at bygge Minepay
+
+```gradle
+gradle server-bukkit:build
+```
+
+> [!IMPORTANT]  
+> Gamle versioner af MinePay vil muligvis ikke blive understøttet og der opfordres derfor til altid at bruge den nyeste version.
+
+> [!NOTE]  
+> MinePay vil blive bygget til mappen `build/libs/MinePay.jar`
 
 ## License
 
