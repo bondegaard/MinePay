@@ -37,7 +37,7 @@
 
 <a id="maven"></a>
 ### Maven Repository
-```
+```xml
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -45,7 +45,7 @@
     </repository>
 </repositories>
 ```
-```
+```xml
 <dependency>
     <groupId>com.github.mineklub</groupId>
     <artifactId>MinePay</artifactId>
@@ -56,7 +56,7 @@
 <a id="gradle"></a>
 ```
 ### Gradle Repository
-```
+```gradle
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
@@ -65,7 +65,7 @@ allprojects {
 
 ```
 
-```
+```gradle
 dependencies {
     implementation 'com.github.mineklub:MinePay:d7be9c0fa4'
 }
