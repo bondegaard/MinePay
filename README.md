@@ -5,6 +5,8 @@
   <a href="https://github.com/mineklub/MinePay/releases"><img src="https://raw.githubusercontent.com/bondegaard/MinePay/main/.github/mineclub_logo.svg" alt="MineClub Logo"></a>
 </h1>
 
+<h2 align="center">MinePay.</h2>
+
 <h4 align="center">Plugin til at håndtere betallinger af mønter på Mineclub.dk.</h4>
 
 <p align="center">
@@ -22,6 +24,7 @@
 <p align="center">
   <a href="#maven">Maven</a> •
   <a href="#gradle">Gradle</a> •
+    <a href="#build">Build</a> •
   <a href="https://discord.gg/ePxVMN5ACh">Discord</a> •
   <a href="#license">License</a>
 </p>
@@ -68,6 +71,7 @@ dependencies {
 > [!IMPORTANT]  
 > Gamle versioner af MinePay vil muligvis ikke blive understøttet og der opfordres derfor til altid at bruge den nyeste version.
 
+<a id="build"></a>
 ## Build
 Brug følgende gradle kommando for at bygge Minepay
 
