@@ -22,14 +22,7 @@
 <p align="center">
   <a href="#maven">Maven</a> •
   <a href="#gradle">Gradle</a> •
-  <a href="#features">Features</a> •
-  <a href="#symbols">Symbols</a> •
-  <a href="#binds">Binds</a> •
-  <a href="#wiki">Wiki</a> •
-  <a href="#contributing">Contributing</a> •
-  <a href="#deprecated">Deprecated</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#support">Support</a> •
+  <a href="https://discord.gg/ePxVMN5ACh">Discord</a> •
   <a href="#license">License</a>
 </p>
 
@@ -52,10 +45,9 @@
     <version>d7be9c0fa4</version>
     <scope>provided</scope>
 </dependency>
-
-<a id="gradle"></a>
 ```
 ### Gradle Repository
+<a id="gradle"></a>
 ```gradle
 allprojects {
     repositories {
@@ -77,3 +69,7 @@ dependencies {
 
 > [!NOTE]  
 > Test.
+
+## License
+
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL%203.0-lightgrey.svg)](https://tldrlegal.com/license/gnu-general-public-license-v3-gpl-3)
